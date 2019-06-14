@@ -1,4 +1,5 @@
 # Code for "Infect While the Iron is Scarce: Nutrient Explicit Phage-Bacteria Games"
+This code runs both static-environment and environment-feedback based bimatrix replicator dynamical models of host-virus interactions under the ecological mechanisms described in the 'Ferrojan Horse Hypothesis' (see Bonnain et al 2016 for details [link](https://doi.org/10.3389/fmars.2016.00082)). 
 Citation:
 ## Contact
 Please contact Daniel Muratore (dmuratore3@gatech.edu) for questions.
