@@ -227,10 +227,32 @@ plot(graphs_for_plotting[[i]],
 text(-0.8,-0.8,'n',cex=2.2,srt=-40)
 text(0.6,-1.2,'y',cex=2.2,srt=15)
 text(-1.2,0.2,'x',cex=2.2,srt=90)
-legend(x=-1.55,y=1.75,fill=c('green','magenta','blue'),legend=c('All Hosts Produce Siderophores (x=1)',
-                                                                'All Viruses Have Iron Tails (y=1)',
-                                                                'Iron Replete (n=1)'),
-       bty='n',border='black',x.intersp=0.2,cex=1.4)
+#legend(x=-1.55,y=1.75,fill=c('green','magenta','blue'),legend=c('All Hosts Produce Siderophores (x=1)',
+#                                                                'All Viruses Have Iron Tails (y=1)',
+#                                                                'Iron Replete (n=1)'),
+#       bty='n',border='black',x.intersp=0.2,cex=1.4)
 }
 dev.off()
 
+## Preparing a figure legend to use the colors in bottom legend for F4. 
+jpeg('../figures/figure_4_legend.jpg',units='in',width=8.5,height=4,res=600)
+plot(hc_graph,
+     layout=coords,
+     vertex.size=0,
+     vertex.shape='pie',
+     vertex.pie=vertex_fills,
+     vertex.pie.color=vertex_colset,
+     vertex.label.font=2,
+     vertex.label.dist=0,
+     edge.arrow.size=0,
+     margin=rep(0,4),
+     vertex.label=NA,
+    edge.color='white')
+#text(-0.8,-0.8,'n',cex=2.2,srt=-40)
+#text(0.6,-1.2,'y',cex=2.2,srt=15)
+#text(-1.2,0.2,'x',cex=2.2,srt=90)
+legend(x=-2,y=1,fill=c('green','magenta','blue'),legend=c('All Hosts Produce Siderophores (x=1)',
+                                                                'All Viruses Have Iron Tails (y=1)',
+                                                                'Iron Replete (n=1)'),
+       bty='n',border='black',x.intersp=0.2,cex=1.4)
+dev.off()

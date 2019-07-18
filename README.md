@@ -2,7 +2,7 @@
 Citation:
 ## Contact
 Please contact Daniel Muratore (dmuratore3@gatech.edu) for questions.
-## Software Inforamtion
+## Software Information
 All code generated using MATLAB vR2017a and R v 3.6.0 with igraph v 1.2.4 
 This code is distributed under [license]
 
