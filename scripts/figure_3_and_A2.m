@@ -12,12 +12,12 @@ exterior_n=[0,1,0,1,0,1,0,1]';
 %% First case we want to discuss, trivial disaster case
 % see [main text results] for details
 % Setting parameters
-hmat_n0=[3,2;5,4]'; %Host payoffs for n=0 case
-hmat_n1=[3,2;5,4]'; %Host payoffs for n=1 case
-vmat_n0=[2.5,2;4.5,4]; %Virus payoffs for n=0 case
-vmat_n1=[2.5,2;4.5,4]; %Virus payoffs for n=1 case
+hmat_n0=[3,2;5,4.2]'; %Host payoffs for n=0 case
+hmat_n1=[3,2;5,4]; %Host payoffs for n=1 case
+vmat_n0=[2.5,2.2;4.5,4]; %Virus payoffs for n=0 case
+vmat_n1=[2.5,2;4.5,4]'; %Virus payoffs for n=1 case
 thetay=1; %Environmental depletion per frequency ferrojan virus
-thetax=1; %Environmental restoration per frequency cooperator host
+thetax=1.5; %Environmental restoration per frequency cooperator host
 
 %% Find internal fixed points
 rc_nstar=solve_nstar(hmat_n0,hmat_n1,vmat_n0,vmat_n1,thetax,thetay);
@@ -34,10 +34,10 @@ resource_crash=run_feedback(hmat_n0,vmat_n0,hmat_n1,vmat_n1,thetax,thetay,false)
 %% Next case, heteroclinic network
 
 % Setting parameters as above
-hmat_n0=[4,4;3,2];
-vmat_n0=[3,4;1,4];
-hmat_n1=[1,1;2,2.1];
-vmat_n1=[2,1;3,1];
+hmat_n0=[2,2;1,1];
+vmat_n0=[4,3;4,3];
+hmat_n1=[3,2;4,4.1];
+vmat_n1=[1,3;1,3];
 thetay=1;
 thetax=4;
 

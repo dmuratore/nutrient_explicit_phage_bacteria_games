@@ -23,13 +23,13 @@ library(igraph)
 ## q4p: gamma'-delta'
 ## thetax,thetay: environmental restoration parameters
 q1<-1
-q2<-2
-q3<--1
-q4<--3
+q2<-1
+q3<-1
+q4<-1
 q1p<--1
-q2p<--1.1
-q3p<-1
-q4p<-2
+q2p<--2.1
+q3p<--2
+q4p<--2
 thetax<-4
 thetay<-1
 
@@ -190,8 +190,10 @@ emph_cycle<-function(g,p){
   path_graph<-g
   edges_to_color<-c(head(p,-1),tail(p,-1))
   color_ids<-get.edge.ids(path_graph,edges_to_color)
-  E(path_graph)$color<-NA
+  E(path_graph)$color<-'grey'
+  E(path_graph)$arrow.mode<-0
   E(path_graph)$color[color_ids]<-'black'
+  E(path_graph)$arrow.mode[color_ids]<-1
   return(path_graph)
 }
 ## Implementing aesthetic changes
@@ -210,8 +212,21 @@ vertex_fills<-list(c(0,0,0,1,1,1),
                    c(1,1,1,0,0,0))
 vertex_colset<-list(c('green','magenta','blue','white','white','white'))
 ## Making subplots for each heteroclinic cycle in the network
-set.seed(888)
+set.seed(12789)
 coords<-layout_with_fr(hc_graph)
+coords<-coords[rev(1:8),]
+#plot_3d_mat<-matrix(ncol=3,nrow=8,data=c(0,0,0,0,1,1,1,1,0,0,1,1,0,0,1,1,0,1,0,1,0,1,0,1))
+#decide_edges<-function(first_edges,second_edges,plot_3d_mat){
+#  output<-mapply(function(x,y,z) colMeans(z[c(x,y),]),first_edges,second_edges,MoreArgs=list(z=plot_3d_mat))
+#  starts<-plot_3d_mat[first_edges,]
+#  return(list(t(output),starts))}
+#new_mat<-decide_edges(first_edges,second_edges,plot_3d_mat)
+#scatterplot3d(new_mat)
+#colnames(plot_3d_mat)<-c('Frequency Cooperator Hosts','Frequency Ferrojan Viruses','Environmental State')
+#network_plot<-scatterplot3d(plot_3d_mat,color='black',pch=16,cex.symbols=2.5,cex.axis=1.2,grid=FALSE,cex.lab=1.2)
+#network_plot$points3d(rbind(new_mat[[1]][1,],new_mat[[2]][1,]),type='l',lwd=4)
+#network_plot$points3d(t(as.matrix(new_mat[[1]][1,])),pch=17)
+
 for(i in 1:length(graphs_for_plotting)){
 plot(graphs_for_plotting[[i]],
      layout=coords,
@@ -224,9 +239,9 @@ plot(graphs_for_plotting[[i]],
      edge.arrow.size=0.75,
      margin=rep(0,4),
      vertex.label=NA)
-text(-0.8,-0.8,'n',cex=2.2,srt=-40)
-text(0.6,-1.2,'y',cex=2.2,srt=15)
-text(-1.2,0.2,'x',cex=2.2,srt=90)
+text(-0.9,-0.6,'n',cex=2.2,srt=-40)
+text(0.2,-1.2,'y',cex=2.2,srt=15)
+text(-1,0.4,'x',cex=2.2,srt=90)
 #legend(x=-1.55,y=1.75,fill=c('green','magenta','blue'),legend=c('All Hosts Produce Siderophores (x=1)',
 #                                                                'All Viruses Have Iron Tails (y=1)',
 #                                                                'Iron Replete (n=1)'),
@@ -251,8 +266,8 @@ plot(hc_graph,
 #text(-0.8,-0.8,'n',cex=2.2,srt=-40)
 #text(0.6,-1.2,'y',cex=2.2,srt=15)
 #text(-1.2,0.2,'x',cex=2.2,srt=90)
-legend(x=-2,y=1,fill=c('green','magenta','blue'),legend=c('All Hosts Produce Siderophores (x=1)',
-                                                                'All Viruses Have Iron Tails (y=1)',
-                                                                'Iron Replete (n=1)'),
+legend(x=-2,y=1,fill=c('green','magenta','blue'),legend=strwrap(c('All Hosts Produce Siderophores (x=1)',
+                                                                'All Viruses Have Iron-Bound Tails (y=1)',
+                                                                'Iron Replete Environmental Conditions (n=1)')),
        bty='n',border='black',x.intersp=0.2,cex=1.4)
 dev.off()

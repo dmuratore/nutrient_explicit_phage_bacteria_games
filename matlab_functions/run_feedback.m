@@ -46,7 +46,7 @@ else
     ics=[0.1 0.1 0.1];
 end
 % Adjusting Runge-Kutta 4th order integration parameters
-options=odeset('reltol',1e-7);
+options=odeset('reltol',1e-7,'MaxStep',1e-3);
 % Evaluating numerical integration
 [ts,outs]=ode45(@env_feedback,t,ics,options,pars);
 %% Saving outputs

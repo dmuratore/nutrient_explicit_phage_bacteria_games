@@ -5,10 +5,10 @@ addpath('../matlab_functions/')
 %% Executing Code
 % For details about interpretation, see appendix B.0.4
 % Establishing parameters
-hmat_n0=[4,4;3,2]; %Host payoff matrix for n=0 conditions
-vmat_n0=[3,4;1,4]; %Virus payoff matrix for n=0 conditions
-hmat_n1=[1,1;2,2.1]; %Host payoff matrix for n=1 conditions
-vmat_n1=[2,1;3,1]; %Virus payoff matrix for n=1 conditions
+hmat_n0=[2,2;1,1]; %Host payoff matrix for n=0 conditions
+vmat_n0=[4,3;4,3]; %Virus payoff matrix for n=0 conditions
+hmat_n1=[3,2;4,4.1]; %Host payoff matrix for n=1 conditions
+vmat_n1=[1,3;1,3]; %Virus payoff matrix for n=1 conditions
 thetay=1; %Environmental depletion for ferrojan virus frequency
 thetax=4; %Environmental restoration for cooperator host frequency
 % Model attributes
@@ -18,15 +18,15 @@ hc_nstar=solve_nstar(hmat_n0,hmat_n1,vmat_n0,vmat_n1,thetax,thetay);
 hc_xystar=solve_xystar(hc_nstar,hmat_n0,hmat_n1,thetax,thetay);
 
 % Solving the same things to show interior fixed points are not feasible
-hc2_nstar=solve_nstar(hmat_n0,hmat_n1+[0,0;0,1],vmat_n0,vmat_n1,thetax,thetay);
-hc2_xystar=solve_xystar(hc2_nstar,hmat_n0,hmat_n1+[0,0;0,1],thetax,thetay);
+hc2_nstar=solve_nstar(hmat_n0,hmat_n1+[0,0;0,-0.5],vmat_n0,vmat_n1,thetax,thetay);
+hc2_xystar=solve_xystar(hc2_nstar,hmat_n0,hmat_n1+[0,0;0,-0.5],thetax,thetay);
 
 % Generating random trajectories for interior fixed point feasible/not
 % feasible conditions
 rng(517803705)
 for i=1:10
 hc_net=run_feedback(hmat_n0,vmat_n0,hmat_n1,vmat_n1,thetax,thetay,true);
-hc_2=run_feedback(hmat_n0,vmat_n0,hmat_n1+[0,0;0,1],vmat_n1,thetax,thetay,true);
+hc_2=run_feedback(hmat_n0,vmat_n0,hmat_n1+[0,0;0,-0.5],vmat_n1,thetax,thetay,true);
 hc_x{i}=hc_net.outs;
 nhc_x{i}=hc_2.outs;
 end

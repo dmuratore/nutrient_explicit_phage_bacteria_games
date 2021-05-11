@@ -13,7 +13,7 @@ model_pars.hmat=hmat; %Assigning parameters for integration
 model_pars.vmat=vmat;
 t=[0 20]; % Running for 20 generations
 ics=[0.1,0.1]; % Initial fractions cooperator hosts, ferrojan viruses
-options=odeset('reltol',1e-7); % Numerical integration setting
+options=odeset('reltol',1e-7,'MaxStep',1e-3); % Numerical integration setting
 
 % Solving model
 [t1_out,xy1_out]=ode45(@bimat_no_feedback,t,ics,options,model_pars);
@@ -50,8 +50,8 @@ scatter(xy1_out(end,1),xy1_out(end,2),120,'r','filled')
 xlim([-0.1 1.1])
 ylim([-0.1 1.1])
 title('Iron-Starved, \alpha>\beta')
-xlabel('Host Strategy (x)')
-ylabel('Virus Strategy (y)')
+xlabel('Proportion Producer Hosts (P)')
+ylabel('Proportion Ferrojan Viruses (F)')
 hold off
 
 f(2)=subplot(2,2,2);
@@ -62,8 +62,8 @@ scatter(xy2_out(end,1),xy2_out(end,2),120,'r','filled')
 xlim([-0.1 1.1])
 title('Iron-Replete, \gamma>\delta')
 ylim([-0.1 1.1])
-xlabel('Host Strategy (x)')
-ylabel('Virus Strategy (y)')
+xlabel('Proportion Producer Hosts (P)')
+ylabel('Proportion Ferrojan Viruses (F)')
 hold off
 
 f(3)=subplot(2,2,3);
@@ -77,7 +77,7 @@ scatter(t1_out(end),xy1_out(end,2),120,'r','filled')
 ylim([-0.1 1.1])
 xlabel('Generations')
 ylabel('Prevalence of Strategy')
-legend('Host (x)','Virus (y)','Location','east')
+legend('Producer Host (P)','Ferrojan Virus (F)','Location','east')
 legend boxoff
 hold off
 
@@ -92,7 +92,7 @@ scatter(t2_out(end),xy2_out(end,2),120,'r','filled')
 ylim([-0.1 1.1])
 xlabel('Generations')
 ylabel('Prevalence of Strategy')
-legend('Host (x)','Virus (y)','Location','east')
+legend('Producer Host (P)','Ferrojan Virus (F)','Location','east')
 legend boxoff
 hold off
 
